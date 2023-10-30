@@ -1,0 +1,234 @@
+
+{% load static %}
+
+<!-- HEADER AREA START (header-5) -->
+<header class="ltn__header-area ltn__header-3 section-bg-6---">   
+    <!-- ltn__header-top-area start -->
+    <div class="ltn__header-top-area border-bottom top-area-color-white---">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="ltn__top-bar-menu">
+                        <ul>
+                            <li><a href="mailto:diagnog@gmail.com"><i class="icon-mail"></i> diagnog@gmail.com</a></li>
+                            <li><i class="icon-placeholder"></i> House No 502, Phase 2, Mohali, Punjab, 160055</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="top-bar-right text-end">
+                        <div class="ltn__top-bar-menu">
+                            <ul>
+                                <li>
+                                    <!-- ltn__social-media -->
+                                    <div class="ltn__social-media">
+                                        <ul>
+                                            <li><a href="https://twitter.com/MyDiagnog" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                            
+                                            <li><a href="https://www.instagram.com/diagnog/" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="https://www.linkedin.com/in/my-diagnog-4473a924a/" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ltn__header-top-area end -->     
+    <!-- ltn__header-middle-area start -->
+    <div class="ltn__header-middle-area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="site-logo">
+                        <a href="/"><img src="{% static 'logo/DIAGNO.svg' %}" alt="Logo"></a>
+                    </div>
+                </div>
+                <div class="col header-contact-serarch-column d-none d-xl-block">
+                    <div class="header-contact-search">
+                        <!-- header-feature-item -->
+                        <div class="header-feature-item d-none">
+                            <div class="header-feature-icon">
+                                <i class="icon-phone"></i>
+                            </div>
+                            <div class="header-feature-info">
+                                <h6>Phone</h6>
+                                <p><a href="tel:+917837008966">78370 08966</a></p>
+                            </div>
+                        </div>
+                        <!-- header-search-2 -->
+                        <div class="header-search-2">
+                            <form id="" method="get"  action="/product/">
+                                <input type="text" name="filter" value="{{ filter_by }}" placeholder="Search here..."/>
+                                <button type="submit">
+                                    <span><i class="icon-search"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- header-options -->
+                    <div class="ltn__header-options">
+                        <ul>
+                           
+                            {% comment %} <li class="d-none--- ">
+                                <!-- header-search-1 -->
+                                <div class="header-search-wrap d-block d-xl-none">
+                                    <div class="header-search-1">
+                                        <div class="search-icon">
+                                            <i class="icon-search  for-search-show"></i>
+                                            <i class="icon-cancel  for-search-close"></i>
+                                        </div>
+                                    </div>
+                                    <div class="header-search-1-form">
+                                        <form id="#" method="get"  action="">
+                                            <input type="text" name="search" value="{{ filter_by }}}" placeholder="Search..."/>
+                                            <button type="submit">
+                                                <span><i class="icon-search"></i></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li> {% endcomment %}
+                            <li class="d-none---"> 
+                                <!-- user-menu -->
+                                <div class="ltn__drop-menu user-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon-user"></i></a>
+                                            <ul>
+                                                {% if request.user.is_authenticated %}
+                                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                                {% else %}
+                                                <li><a href="{% url 'login' %}">Sign in</a></li>
+                                                <li><a href="{% url 'register' %}">Register</a></li>
+                                                {% endif %}
+                                                <li><a href="{% url 'profile' %}">My Account</a></li>
+                                                <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- mini-cart 2 -->
+                                <div id="update-cart">
+                                <div class="mini-cart-icon mini-cart-icon-2 update">
+                                    <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                        <span class="mini-cart-icon">
+                                            <i class="icon-shopping-cart"></i>
+                                            <sup>{{ order.get_cart_total_item }}</sup>
+                                        </span>
+                                        <h6><span>Your Cart</span> <span class="ltn__secondary-color">₹{{ order.get_cart_total }}</span></h6>
+                                    </a>
+                                </div>
+                            </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ltn__header-middle-area end -->
+
+    <!-- MOBILE MENU START -->
+    {% include 'header/mob_menu.html' %}
+    <!-- MOBILE MENU END -->
+    
+    <!-- header-bottom-area start -->
+    <div class="header-bottom-area ltn__border-top--- ltn__header-sticky  ltn__sticky-bg-white ltn__primary-bg---- menu-color-white---- d-none---- d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 align-self-center">
+                    <!-- CATEGORY-MENU-LIST START -->
+                    <div class="ltn__category-menu-wrap ltn__category-dropdown-hide ltn__category-menu-with-header-menu">
+                        <div class="ltn__category-menu-title">
+                            <h2 class="section-bg-1--- ltn__secondary-bg text-color-white">Categories</h2>
+                        </div>
+                        <div class="ltn__category-menu-toggle ltn__one-line-active">
+                            <ul>
+                                <!-- Submenu Column - unlimited -->
+                                {% for category in categories %}
+                                <li class="ltn__category-menu-item ltn__category-menu-drop">
+                                    <a href="/product/?filter={{category.category_name}}"><i class="icon-shopping-bags"></i>{{ category }}<span class="expand"></span></a>
+                                    <ul class="ltn__category-submenu ltn__category-column-no-{{ category.get_products|length }}">
+                                                {% for product in category.get_products %}
+                                                        <li ltn__category-submenu-title ltn__category-menu-drop><a href="{% url 'product_details' slug=product.slug %}">{{product}}</a></li>
+                                                {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END CATEGORY-MENU-LIST -->
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="col--- header-menu-column justify-content-center---">
+                        <div class="header-menu header-menu-2 text-start">
+                            <nav>
+                                <div class="ltn__main-menu">
+                                    <ul>
+                                        <li><a href="/">Home</a>
+                                        </li>
+
+                                        <li class="menu-icon"><a href="#">Shop</a>
+                                            <ul class="mega-menu">
+                                                {% for category in categories %}
+                                                <li><a href="/product/?filter={{category.category_name}}">{{ category }}</a>
+                                                    <ul>
+                                                    {% for product in category.get_products %}
+                                                        <li><a href="{% url 'product_details' slug=product.slug %}">{{product}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                                </li>
+                                                {% endfor %}
+                                                
+    
+                                                <li><a href="shop.html"><img src="{% static 'img/banner/menu-banner-1.png' %}" alt="#"></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+    
+                                        <li class="menu-icon"><a href="">Latest Offers</a>
+                                            <ul>
+                                                <li><a href="{% url 'about_page' %}">About</a></li>
+                                                <li><a href="">Services</a></li>
+                                            </ul>
+                                        </li>
+    
+                                        <li class="menu-icon"><a href="">More</a>
+                                            <ul>
+                                                <li><a href="{% url 'contact_page' %}">Contact Us</a></li>
+                                                <li><a href="{% url 'about_page' %}">About Us</a></li>
+                                                {% if request.user.is_authenticated %}
+                                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                                {% else %}
+                                                <li><a href="{% url 'login' %}">Login</a></li>
+                                                <li><a href="{% url 'register' %}">Register</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-2 align-self-center d-none d-xl-block">
+                    <div class="header-contact-info text-end">
+                        <a class="font-weight-6 ltn__primary-color" href="tel:+91 78370 08966"><span class="ltn__secondary-color"><i class="icon-call font-weight-7"></i></span> +91 78370 08966</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header-bottom-area end -->
+</header>

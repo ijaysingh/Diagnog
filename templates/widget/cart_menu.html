@@ -1,0 +1,39 @@
+
+{% load static %}
+
+<!-- used to show the right side bar of the cart items -->
+
+<div id="ltn__utilize-cart-menu" name="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
+    <div class="ltn__utilize-menu-inner ltn__scrollbar">
+        <div class="ltn__utilize-menu-head">
+            <span class="ltn__utilize-menu-title">Cart</span>
+            <button class="ltn__utilize-close">×</button>
+        </div>
+        <div class="mini-cart-product-area ltn__scrollbar">
+            {% for item in items %}
+            <div class="mini-cart-item clearfix">
+                <div class="mini-cart-img">
+                    <a href="{% url 'product_details' slug=item.product.slug %}"><img src="{{ item.product.imgURL }}" alt="Image"></a>
+                    <button type="button" class="mini-cart-item-delete remove-cart" aria-label="Close" data-id="{{ item.product.id }}" data-action="remove">
+                        x
+                    </button>
+                </div>
+                <div class="mini-cart-info">
+                    <h6><a href="{% url 'product_details' slug=item.product.slug %}">{{ item.product.productName }}</a></h6>
+                    <span class="mini-cart-quantity">{{ item.quantity }} x ₹{{ item.get_final_price }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mini-cart-footer">
+            <div class="mini-cart-sub-total">
+                <h5>Subtotal: <span>₹{{ order.get_cart_total }}</span></h5>
+            </div>
+            <div class="btn-wrapper">
+                <a href="{% url 'cart' %}" class="theme-btn-1 btn btn-effect-1">View Cart</a>
+                <a href="{% url 'checkout' %}" class="theme-btn-2 btn btn-effect-2">Checkout</a>
+            </div>
+        </div>
+
+    </div>
+</div>

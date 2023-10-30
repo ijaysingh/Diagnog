@@ -1,0 +1,448 @@
+<!-- To show the list of particular products as per search query -->
+{% block content %}
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Product Search | DiagnoG - med eCommerce</title>
+      <meta name="robots" content="noindex, follow" />
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Place favicon.png in the root directory -->
+      <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+      <!-- css files -->
+      {% include 'include/css.html' %}
+      <!-- js files -->
+      {% include 'include/js.html' %}
+   </head>
+   <body>
+      <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+      <!-- Add your site or application content here -->
+      <!-- Body main wrapper start -->
+      <div class="body-wrapper">
+      <!-- HEADER AREA START (header-3) -->
+      {% include 'header/header.html' %}
+      <!-- HEADER AREA END -->
+      <!-- MOBILE MENU START -->
+      {% include 'header/mob_menu.html' %}
+      <!-- MOBILE MENU END -->
+      <!-- Utilize Cart Menu Start -->
+      {% include 'widget/cart_menu.html' %}
+      <!-- Utilize Cart Menu End -->
+      <!-- Utilize Mobile Menu Start -->
+      {% include 'header/mobile_menu.html' %}
+      <!-- Utilize Mobile Menu End -->
+      <div class="ltn__utilize-overlay"></div>
+      <br> <br>
+      <!-- BREADCRUMB AREA START -->
+      <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "  data-bs-bg="{% static 'img/bg/14.jpg' %}">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="ltn__breadcrumb-inner">
+                     <h1 class="page-title">Shop</h1>
+                     <div class="ltn__breadcrumb-list">
+                        <ul>
+                           <li><a href="/"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                           <li>Shop</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- BREADCRUMB AREA END -->
+      <!-- PRODUCT DETAILS AREA START -->
+      <div class="ltn__product-area ltn__product-gutter mb-120">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8">
+               <div class="ltn__shop-options">
+                  <ul>
+                     <li>
+                        <div class="ltn__grid-list-tab-menu ">
+                           <div class="nav">
+                              <a class="active show" data-bs-toggle="tab" href="#liton_product_grid"><i class="fas fa-th-large"></i></a>
+                              <a data-bs-toggle="tab" href="#liton_product_list"><i class="fas fa-list"></i></a>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="showing-product-number text-right">
+                           <span>Showing 1–12 of 18 results</span>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="short-by text-center">
+                           <select class="nice-select">
+                              <option>Default Sorting</option>
+                              <option>Sort by popularity</option>
+                              <option>Sort by new arrivals</option>
+                              <option>Sort by price: low to high</option>
+                              <option>Sort by price: high to low</option>
+                           </select>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div class="tab-content">
+                  <div class="tab-pane fade active show" id="liton_product_grid">
+                     <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                        <div class="row">
+                           <!-- ltn__product-item -->
+                           {% for product in products %}
+                           <div class="col-xl-4 col-sm-6 col-6">
+                              <div class="ltn__product-item ltn__product-item-3 text-center">
+                                 <div class="product-img">
+                                    <a href="{% url 'product_details' id=product.id %}"><img src="{{product.imgURL}}" alt="#"></a>
+                                    <div class="product-badge">
+                                       <ul>
+                                          <li class="sale-badge">New</li>
+                                       </ul>
+                                    </div>
+                                    <div class="product-hover-action">
+                                       <ul>
+                                          <li>
+                                             <a href="#" title="Quick View" data-id="{{product.id}}" class="view-product" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                             <i class="far fa-eye"></i>
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                             <i class="fas fa-shopping-cart"></i>
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="#" title="Wishlist" data-id="{{product.id}}" class="add-product" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                             <i class="far fa-heart"></i></a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                                 <div class="product-info">
+                                    <div class="product-ratting">
+                                       <ul>
+                                          <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                          <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                          <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                          <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                          <li><a href="#"><i class="far fa-star"></i></a></li>
+                                       </ul>
+                                    </div>
+                                    <h2 class="product-title"><a href="{% url 'product_details' id=product.id %}">{{product.productName}}</a></h2>
+                                    <div class="product-price">
+                                       <span>₹{{product.discount_price}}</span>
+                                       <del>₹{{product.price}}</del>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           {% endfor %}
+                           <!--- -->
+                        </div>
+                     </div>
+                  </div>
+                  <div class="tab-pane fade" id="liton_product_list">
+                     <div class="ltn__product-tab-content-inner ltn__product-list-view">
+                        <div class="row">
+                           <!-- ltn__product-item -->
+                           {% for product in products %}
+                           <div class="col-lg-12">
+                              <div class="ltn__product-item ltn__product-item-3">
+                                 <div class="product-img">
+                                    <a href="{% url 'product_details' id=product.id %}"><img src="{{product.imgURL}}" alt="#"></a>
+                                    <div class="product-badge">
+                                       <ul>
+                                          <li class="sale-badge">New</li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                                 <div class="product-info">
+                                    <h2 class="product-title"><a href="{% url 'product_details' id=product.id %}">{{product.productName}}</a></h2>
+                                    <div class="product-price">
+                                       </a></h2>
+                                       <div class="product-ratting">
+                                          <ul>
+                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                             <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                             <li><a href="#"><i class="far fa-star"></i></a></li>
+                                          </ul>
+                                       </div>
+                                       <div class="product-price">
+                                          <span>₹{{product.discount_price}}</span>
+                                          <del>₹{{product.price}}</del>
+                                       </div>
+                                       <div class="product-brief">
+                                          <p>{{ product.description }}</p>
+                                       </div>
+                                       <div class="product-hover-action">
+                                          <ul>
+                                             <li>
+                                                <a href="#" title="Quick View" data-id="{{product.id}}" class="view-product" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                <i class="far fa-eye"></i>
+                                                </a>
+                                             </li>
+                                             <li>
+                                                <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                             </li>
+                                             <li>
+                                                <a href="#" title="Wishlist" data-id="{{product.id}}" class="add-product" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                                <i class="far fa-heart"></i></a>
+                                             </li>
+                                          </ul>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              {% endfor %}
+                              <!--  -->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  {% comment %} end tab-content {% endcomment %}
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- PRODUCT DETAILS AREA END -->
+      <!-- CALL TO ACTION START (call-to-action-6) -->
+      {% include 'widget/call_to_action.html' %}
+      <!-- CALL TO ACTION END -->
+      <!-- FOOTER AREA START -->
+      {% include 'footer/footer.html' %}
+      <!-- FOOTER AREA END -->
+      <!-- MODAL AREA START (Quick View Modal) -->
+      <div class="ltn__modal-area ltn__quick-view-modal-area">
+         <div class="modal fade" id="quick_view_modal" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+               {% if prod %}
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <!-- <i class="fas fa-times"></i> -->
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="ltn__quick-view-modal-inner">
+                        <div class="modal-product-item">
+                           <div class="row">
+                              <div class="col-lg-6 col-12">
+                                 <div class="modal-product-img">
+                                    <img src="{{ prod.imgURL }}" alt="#">
+                                 </div>
+                              </div>
+                              <div class="col-lg-6 col-12">
+                                 <div class="modal-product-info">
+                                    <div class="product-ratting">
+                                       <ul>
+                                          <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                          <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                          <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                          <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                          <li><a href="#"><i class="far fa-star"></i></a></li>
+                                          <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                       </ul>
+                                    </div>
+                                    <h3>{{ prod.productName }}</h3>
+                                    <div class="product-price">
+                                       <span>₹{{prod.price}}</span>
+                                       <del>₹{{prod.discount_price}}</del>
+                                    </div>
+                                    <div class="modal-product-meta ltn__product-details-menu-1">
+                                       <ul>
+                                          <li>
+                                             <strong>Categories:</strong> 
+                                             <span>
+                                             <a href="#">{{prod.productCategory}}</a>
+                                             </span>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    <div class="ltn__product-details-menu-2">
+                                       <ul>
+                                          <li>
+                                             <div class="cart-plus-minus">
+                                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                             </div>
+                                          </li>
+                                          <li>
+                                             <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                             <i class="fas fa-shopping-cart"></i>
+                                             <span>ADD TO CART</span>
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    <div class="ltn__product-details-menu-3">
+                                       <ul>
+                                          <li>
+                                             <a href="#" title="Wishlist" data-id="{{prod.id}}" class="add-product" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                             <i class="far fa-heart"></i>
+                                             <span>Add to Wishlist</span>
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="ltn__social-media">
+                                       <ul>
+                                          <li>Share:</li>
+                                          <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                          <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                          <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                          <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endif %}
+            </div>
+         </div>
+      </div>
+      <!-- MODAL AREA END -->
+      <!-- MODAL AREA START (Add To Cart Modal) -->
+      <div class="ltn__modal-area ltn__add-to-cart-modal-area">
+         <div class="modal fade" id="add_to_cart_modal" tabindex="-1">
+            <div class="modal-dialog modal-md" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="ltn__quick-view-modal-inner">
+                        <div class="modal-product-item">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="modal-product-img">
+                                    <img src="img/product/1.png" alt="#">
+                                 </div>
+                                 <div class="modal-product-info">
+                                    <h5><a href="product-details.html">Digital Stethoscope</a></h5>
+                                    <p class="added-cart"><i class="fa fa-check-circle"></i>  Successfully added to your Cart</p>
+                                    <div class="btn-wrapper">
+                                       <a href="cart.html" class="theme-btn-1 btn btn-effect-1">View Cart</a>
+                                       <a href="checkout.html" class="theme-btn-2 btn btn-effect-2">Checkout</a>
+                                    </div>
+                                 </div>
+                                 <!-- additional-info -->
+                                 <div class="additional-info d-none">
+                                    <p>We want to give you <b>10% discount</b> for your first order, <br>  Use discount code at checkout</p>
+                                    <div class="payment-method">
+                                       <img src="img/icons/payment.png" alt="#">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- MODAL AREA END -->
+      <!-- MODAL AREA START (Wishlist Modal) -->
+      <div class="ltn__modal-area ltn__add-to-cart-modal-area">
+         <div class="modal fade" id="liton_wishlist_modal" tabindex="-1">
+            <div class="modal-dialog modal-md" role="document">
+               {% if prod %}
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="ltn__quick-view-modal-inner">
+                        <div class="modal-product-item">
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="modal-product-img">
+                                    <img src="{{ prod.imgURL }}" alt="#">
+                                 </div>
+                                 <div class="modal-product-info">
+                                    <h5><a href="product-details.html"> {{ prod.productName }} </a></h5>
+                                    <p class="added-cart"><i class="fa fa-check-circle"></i>  Successfully added to your Wishlist</p>
+                                    <div class="btn-wrapper">
+                                       <a href="{% url 'wishlist' id=prod.id %}" class="theme-btn-1 btn btn-effect-1">View Wishlist</a>
+                                    </div>
+                                 </div>
+                                 <!-- additional-info -->
+                                 <div class="additional-info d-none">
+                                    <p>We want to give you <b>10% discount</b> for your first order, <br>  Use discount code at checkout</p>
+                                    <div class="payment-method">
+                                       <img src="img/icons/payment.png" alt="#">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endif %}
+            </div>
+         </div>
+      </div>
+      <!-- MODAL AREA END -->
+   </body>
+   <script>
+      $(document).on('click','.add-product',function(){
+          var id = $(this).data('id');
+      
+          $.ajax({
+              url:"",
+              type:'GET',
+              data:{
+                  'id':id,
+              },
+              success:function(data){
+                  console.log(data)
+                  $('#liton_wishlist_modal .modal-dialog').html($('#liton_wishlist_modal .modal-dialog',data));
+                  $('#liton_wishlist_modal').modal('show');
+              },
+              error:function(){
+                  console.log('error')
+              },
+          });
+      });
+      $(document).on('click','.view-product',function(){
+          var id = $(this).data('id');
+      
+          $.ajax({
+              url:'',
+              type:'GET',
+              data:{
+                  'id':id,
+              },
+              success:function(data){
+                  console.log(data)
+                  $('#quick_view_modal .modal-dialog').html($('#quick_view_modal .modal-dialog',data));
+                  $('#quick_view_modal').modal('show');
+              },
+              error:function(){
+                  console.log('error')
+              },
+          });
+      });
+   </script>
+</html>
+{% endblock %}

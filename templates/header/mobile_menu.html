@@ -1,0 +1,92 @@
+{% load static %}
+
+
+<div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
+    <div class="ltn__utilize-menu-inner ltn__scrollbar">
+        <div class="ltn__utilize-menu-head">
+            <div class="site-logo">
+                <a href="/"><img src="{% static 'logo/DIAGNO.svg' %}" alt="Logo"></a>
+            </div>
+            <button class="ltn__utilize-close">×</button>
+        </div>
+        <div class="ltn__utilize-menu-search-form">
+            <form id="" method="get"  action="/product/">
+                <input type="text" name="filter" value="{{ filter_by }}"  placeholder="Search...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="ltn__utilize-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Categories</a>
+                    <ul class="sub-menu">
+                        {% for category in categories %}
+                        <li><a href="{% url 'product_search' %}">{{category}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="#">Shop</a>
+                    <ul class="sub-menu">
+                        {% for category in categories %}
+                        <li><a href="/product/?filter={{category.category_name}}">{{ category }}</a>
+                            <ul>
+                            {% for product in category.get_products %}
+                                <li><a href="{% url 'product_details' slug=product.slug %}">{{product}}</a></li>
+                            {% endfor %}
+                        </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+
+                <li class=""><a href="#">Latest Offers</a>
+                    <ul class="sub-menu">
+                        <li><a href="{% url 'about_page' %}">About</a></li>
+                        <li><a href="">Services</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="{% url 'contact' % }">Contact</a></li>
+            </ul>
+        </div>
+        <div class="ltn__utilize-buttons ltn__utilize-buttons-2">
+            <ul>
+                <li>
+                    <a href="{% url 'profile' %}" title="My Account">
+                        <span class="utilize-btn-icon">
+                            <i class="far fa-user"></i>
+                        </span>
+                        My Account
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'wishlist' %}" title="Wishlist">
+                        <span class="utilize-btn-icon">
+                            <i class="far fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'cart' %}" title="Shoping Cart">
+                        <span class="utilize-btn-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <sup>{{ order.get_cart_total_item }}</sup>
+                        </span>
+                        Shoping Cart
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="ltn__social-media-2">
+            <ul>
+                <li><a href="https://twitter.com/MyDiagnog" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                
+                <li><a href="https://www.instagram.com/diagnog/" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/my-diagnog-4473a924a/" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{% load extras %}
+
+<div class="">
+
+    {% if reviewAvg %}
+    {% for c in reviewAvg|times %}
+    <span class="fas fa-star checked"></span>
+    {% endfor %}
+    
+    {% if isHalf %}
+    <span class="fas fa-star-half-alt checked"></span>
+    {% with nr=4|subtract:reviewAvg %}
+    {% for i in nr|times %}
+    <span class="fas fa-star"></span>
+    {% endfor %}
+    {% endwith %}
+    
+
+
+    {% else %}
+    {% with nr=5|subtract:reviewAvg %}
+    {% for i in nr|times %}
+    <span class="fas fa-star"></span>
+    {% endfor %}
+    {% endwith %}
+    {% endif %}
+    {% endif %}
+    <span class="review-total"> ( {{ reviews.count }} Reviews )</span>
+
+</div>
