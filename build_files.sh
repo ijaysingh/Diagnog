@@ -1,2 +1,2 @@
 pip install -r requirement.txt
-python manage.py runserver
+python3.9 manage.py collectstatic
